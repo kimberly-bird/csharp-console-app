@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using Trestlebridge.Interfaces;
 using Trestlebridge.Models.Animals;
+using System.Linq;
 
 namespace Trestlebridge.Models.Facilities {
     public class NaturalField : ISunflowerGrouping, IFacility<IComposting>
@@ -22,6 +23,16 @@ namespace Trestlebridge.Models.Facilities {
 
         public int GetTotalInField() {
             return _flowers.Count;
+        }
+
+        public int GetSunflowersCount ()
+        {
+            return _flowers.Where(f => f.GetType().Name == "Sunflower").Count();
+        }
+
+        public int GetWildflowerCount ()
+        {
+            return _flowers.Where(f => f.GetType().Name == "Wildflower").Count();
         }
 
         public bool AddResource (IComposting flower)

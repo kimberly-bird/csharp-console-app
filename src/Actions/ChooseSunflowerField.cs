@@ -29,7 +29,7 @@ namespace Trestlebridge.Actions {
             foreach (var item in fieldDict)
             {
                 // display available fields and # flowers in each field to user
-                Console.WriteLine($"{item.Key}. {item.Value.GetType().Name} ({item.Value.GetTotalInField()} rows of plants)");
+                Console.WriteLine($"{item.Key}. {item.Value.GetType().Name} ({item.Value.GetSunflowersCount()} sunflowers, {item.Value.GetWildflowerCount()} wildflowers)");
             }
 
             Console.WriteLine ();

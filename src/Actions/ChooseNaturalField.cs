@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Trestlebridge.Interfaces;
 using Trestlebridge.Models;
@@ -9,15 +10,17 @@ namespace Trestlebridge.Actions {
         public static void CollectInput (Farm farm, IComposting wildflower) {
             Console.Clear();
 
+
+
             for (int i = 0; i < farm.NaturalFields.Count; i++)
             {
-                Console.WriteLine ($"{i + 1}. Natural Field contains ({farm.NaturalFields[i].GetTotalInField()} flowers)");
+                Console.WriteLine ($"{i + 1}. Natural Field ({farm.NaturalFields[i].GetSunflowersCount()} sunflowers, {farm.NaturalFields[i].GetWildflowerCount()} wildflowers)");
             }
 
             Console.WriteLine ();
 
             // How can I output the type of wildflower chosen here?
-            Console.WriteLine ($"Place the {wildflower} where?");
+            Console.WriteLine ($"Place the {wildflower.GetType().Name} where?");
 
             Console.Write ("> ");
             int choice = Int32.Parse(Console.ReadLine ());
