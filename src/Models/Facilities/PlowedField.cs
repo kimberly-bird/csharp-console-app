@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using Trestlebridge.Interfaces;
 using Trestlebridge.Models.Animals;
+using System.Linq;
 
 namespace Trestlebridge.Models.Facilities {
     public class PlowedField : ISunflowerGrouping, IFacility<ISeedProducing>
@@ -61,6 +62,16 @@ namespace Trestlebridge.Models.Facilities {
         public double Harvest()
         {
             throw new NotImplementedException();
+        }
+
+        public int GetSunflowersCount()
+        {
+            return _flowers.Where(f => f.GetType().Name == "Sunflower").Count();
+        }
+
+        public int GetWildflowerCount()
+        {
+            return _flowers.Where(f => f.GetType().Name == "Wildflower").Count();
         }
     }
 }
