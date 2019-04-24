@@ -5,27 +5,27 @@ using Trestlebridge.Models;
 using Trestlebridge.Models.Animals;
 
 namespace Trestlebridge.Actions {
-    public class ChooseGrazingField {
-        public static void CollectInput (Farm farm, IGrazing animal) {
+    public class ChoosePlowedField {
+        public static void CollectInput (Farm farm, ISeedProducing flower) {
             Console.Clear();
 
-            for (int i = 0; i < farm.GrazingFields.Count; i++)
+            for (int i = 0; i < farm.PlowedFields.Count; i++)
             {
-                Console.WriteLine ($"{i + 1}. Grazing Field ({farm.GrazingFields[i].GetTotalInField()} animals)");
+                Console.WriteLine ($"{i + 1}. Plowed Field contains ({farm.PlowedFields[i].GetTotalInField()} flowers)");
             }
 
             Console.WriteLine ();
 
-            // How can I output the type of animal chosen here?
-            Console.WriteLine ($"Place the {animal.Type} where?");
+            // How can I output the type of flower chosen here?
+            Console.WriteLine ($"Place the {flower} where?");
 
             Console.Write ("> ");
             int choice = Int32.Parse(Console.ReadLine ());
             choice = choice - 1; 
 
-            if (!farm.GrazingFields[choice].AddResource(animal))
+            if (!farm.PlowedFields[choice].AddResource(flower))
             {
-                ChooseGrazingField.CollectInput(farm, animal);
+                ChoosePlowedField.CollectInput(farm, flower);
             }
 
             /*

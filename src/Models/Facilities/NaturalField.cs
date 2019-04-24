@@ -2,15 +2,17 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 using Trestlebridge.Interfaces;
-
+using Trestlebridge.Models.Animals;
 
 namespace Trestlebridge.Models.Facilities {
-    public class GrazingField : IFacility<IGrazing>
+    public class NaturalField : ISunflowerGrouping, IFacility<IComposting>
     {
         private int _capacity = 3;
         private Guid _id = Guid.NewGuid();
 
-        private List<IGrazing> _animals = new List<IGrazing>();
+        private List<IComposting> _flowers = new List<IComposting>();
+
+        public string Name = "NaturalField";
 
         public double Capacity {
             get {
@@ -19,13 +21,13 @@ namespace Trestlebridge.Models.Facilities {
         }
 
         public int GetTotalInField() {
-            return _animals.Count;
+            return _flowers.Count;
         }
 
-        public bool AddResource (IGrazing animal)
+        public bool AddResource (IComposting flower)
         {
-            if (_animals.Count < _capacity) {
-                _animals.Add(animal);
+            if (_flowers.Count < _capacity) {
+                _flowers.Add(flower);
                 return true;
             }
             else {
@@ -38,10 +40,10 @@ namespace Trestlebridge.Models.Facilities {
             }
         }
 
-        public void AddResource (List<IGrazing> animals)  
+        public void AddResource (List<IComposting> flowers)  
         {
-            if (_animals.Count + animals.Count <= _capacity) {
-                _animals.AddRange(animals);
+            if (_flowers.Count + flowers.Count <= _capacity) {
+                _flowers.AddRange(flowers);
             }
         }
 
@@ -50,10 +52,15 @@ namespace Trestlebridge.Models.Facilities {
             StringBuilder output = new StringBuilder();
             string shortId = $"{this._id.ToString().Substring(this._id.ToString().Length - 6)}";
 
-            output.Append($"Grazing field {shortId} has {this._animals.Count} animals\n");
-            this._animals.ForEach(a => output.Append($"   {a}\n"));
+            output.Append($"Natural field {shortId} has {this._flowers.Count} flowers\n");
+            this._flowers.ForEach(a => output.Append($"   {a}\n"));
 
             return output.ToString();
+        }
+
+        public double Compost()
+        {
+            return _flowers.Count;
         }
     }
 }
