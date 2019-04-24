@@ -29,7 +29,7 @@ namespace Trestlebridge.Actions {
             foreach (var item in fieldDict)
             {
                 // display available fields and # flowers in each field to user
-                Console.WriteLine($"{item.Key}. {item.Value.GetType().Name} ({item.Value.GetTotalInField()} flowers)");
+                Console.WriteLine($"{item.Key}. {item.Value.GetType().Name} ({item.Value.GetTotalInField()} rows of plants)");
             }
 
             Console.WriteLine ();
@@ -44,27 +44,19 @@ namespace Trestlebridge.Actions {
             {
                 case "PlowedField":
                     var field = (PlowedField)fieldDict[choice];
-                    field.AddResource((Sunflower)sunflower);
+                    if (!field.AddResource((Sunflower)sunflower))
+                    {
+                        ChooseSunflowerField.CollectInput(farm, (Sunflower)sunflower);
+                    }
                     break;
                 case "NaturalField":
                     var natField = (NaturalField)fieldDict[choice];
-                    natField.AddResource((Sunflower)sunflower);
+                    if (!natField.AddResource((Sunflower)sunflower))
+                    {
+                        ChooseSunflowerField.CollectInput(farm, (Sunflower)sunflower);
+                    }
                     break;
             }
-
-
-
-            // if (!farm.NaturalFields[choice].AddResource(sunflower))
-            // {
-            //     ChooseSunflowerField.CollectInput(farm, sunflower);
-            // }
-
-            /*
-                Couldn't get this to work. Can you?
-                Stretch goal. Only if the app is fully functional.
-             */
-            // farm.PurchaseResource<IGrazing>(animal, choice);
-
         }
     }
 }
