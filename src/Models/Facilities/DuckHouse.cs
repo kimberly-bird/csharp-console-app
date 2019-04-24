@@ -2,15 +2,15 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 using Trestlebridge.Interfaces;
-
+using Trestlebridge.Models.Animals;
 
 namespace Trestlebridge.Models.Facilities {
-    public class GrazingField : IFacility<IGrazing>
+    public class DuckHouse 
     {
         private int _capacity = 3;
         private Guid _id = Guid.NewGuid();
 
-        private List<IGrazing> _animals = new List<IGrazing>();
+        private List<Duck> _ducks = new List<Duck>();
 
         public double Capacity {
             get {
@@ -19,13 +19,13 @@ namespace Trestlebridge.Models.Facilities {
         }
 
         public int GetTotalInField() {
-            return _animals.Count;
+            return _ducks.Count;
         }
 
-        public bool AddResource (IGrazing animal)
+        public bool AddResource (Duck duck)
         {
-            if (_animals.Count < _capacity) {
-                _animals.Add(animal);
+            if (_ducks.Count < _capacity) {
+                _ducks.Add(duck);
                 return true;
             }
             else {
@@ -38,10 +38,10 @@ namespace Trestlebridge.Models.Facilities {
             }
         }
 
-        public void AddResource (List<IGrazing> animals)  
+        public void AddResource (List<Duck> ducks)  
         {
-            if (_animals.Count + animals.Count <= _capacity) {
-                _animals.AddRange(animals);
+            if (_ducks.Count + ducks.Count <= _capacity) {
+                _ducks.AddRange(ducks);
             }
         }
 
@@ -50,8 +50,8 @@ namespace Trestlebridge.Models.Facilities {
             StringBuilder output = new StringBuilder();
             string shortId = $"{this._id.ToString().Substring(this._id.ToString().Length - 6)}";
 
-            output.Append($"Grazing field {shortId} has {this._animals.Count} animals\n");
-            this._animals.ForEach(a => output.Append($"   {a}\n"));
+            output.Append($"Grazing field {shortId} has {this._ducks.Count} animals\n");
+            this._ducks.ForEach(a => output.Append($"   {a}\n"));
 
             return output.ToString();
         }
