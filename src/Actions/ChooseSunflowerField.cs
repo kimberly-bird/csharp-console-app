@@ -4,42 +4,55 @@ using System.Linq;
 using Trestlebridge.Interfaces;
 using Trestlebridge.Models;
 using Trestlebridge.Models.Animals;
+using Trestlebridge.Models.Facilities;
+using Trestlebridge.Models.Plants;
 
 namespace Trestlebridge.Actions {
     public class ChooseSunflowerField {
         public static void CollectInput (Farm farm, IResource sunflower) {
             Console.Clear();
 
-            // farm shows how many instances of fields exist
-            // sunflower contains the selected type of seeds to purchase
-
-            // create dictionary with key as number, value is selected field
+            // create dictionary with key as incrementing number, value is instance of selected field
             // loop over each field and build up dictionary
-            // pass flower to correct field
 
-            Dictionary<int, ISunflowerGrouping> fieldList = new Dictionary<int, ISunflowerGrouping>();
+            Dictionary<int, ISunflowerGrouping> fieldDict = new Dictionary<int, ISunflowerGrouping>();
+            
             int counter = 1;
             farm.NaturalFields.ForEach(f => {
-                fieldList.Add(counter, f);
+                fieldDict.Add(counter, f);
                 counter++;
             });
             farm.PlowedFields.ForEach(p => {
-                fieldList.Add(counter, p);
+                fieldDict.Add(counter, p);
                 counter++;
             });
-            foreach (var item in fieldList)
+            foreach (var item in fieldDict)
             {
+                // display available fields and # flowers in each field to user
                 Console.WriteLine($"{item.Key}. {item.Value.GetType().Name} ({item.Value.GetTotalInField()} flowers)");
             }
 
             Console.WriteLine ();
 
-            // How can I output the type of sunflower chosen here?
             Console.WriteLine ($"Place the {sunflower} where?");
 
             Console.Write ("> ");
             int choice = Int32.Parse(Console.ReadLine ());
-            choice = choice - 1; 
+
+            // get the type of field that was selected and add to appropriate field list
+            switch (fieldDict[choice].GetType().Name)
+            {
+                case "PlowedField":
+                    var field = (PlowedField)fieldDict[choice];
+                    field.AddResource((Sunflower)sunflower);
+                    break;
+                case "NaturalField":
+                    var natField = (NaturalField)fieldDict[choice];
+                    natField.AddResource((Sunflower)sunflower);
+                    break;
+            }
+
+
 
             // if (!farm.NaturalFields[choice].AddResource(sunflower))
             // {
