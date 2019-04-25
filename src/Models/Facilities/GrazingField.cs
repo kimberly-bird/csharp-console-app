@@ -2,12 +2,13 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 using Trestlebridge.Interfaces;
+using System.Linq;
 
 
 namespace Trestlebridge.Models.Facilities {
     public class GrazingField : IFacility<IGrazing>
     {
-        private int _capacity = 3;
+        private int _capacity = 7;
         private Guid _id = Guid.NewGuid();
 
         private List<IGrazing> _animals = new List<IGrazing>();
@@ -20,6 +21,16 @@ namespace Trestlebridge.Models.Facilities {
 
         public int GetTotalInField() {
             return _animals.Count;
+        }
+
+        public void GroupAnimalTotals()
+        {
+            var groupedAnimals = _animals.GroupBy(a => a.Type);
+
+            foreach (var item in groupedAnimals)
+            {
+                Console.WriteLine($"{item.Key} ({item.Count()})");
+            }
         }
 
         public bool AddResource (IGrazing animal)
@@ -35,6 +46,7 @@ namespace Trestlebridge.Models.Facilities {
 
                 Console.ReadLine();
                 return false;
+
             }
         }
 

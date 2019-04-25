@@ -30,7 +30,6 @@ namespace Trestlebridge.Actions {
             foreach (var item in fieldDict)
             {
                 // display available fields and # flowers in each field to user
-                // TODO: How to conditionally show wildflower OR sesame, based on natural vs plowed field?
                 StringBuilder output = new StringBuilder();
 
                 var flowerType = item.Value.GetType().Name;

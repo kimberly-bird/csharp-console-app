@@ -19,7 +19,6 @@ namespace Trestlebridge.Actions {
 
             Console.WriteLine ();
 
-            // How can I output the type of wildflower chosen here?
             Console.WriteLine ($"Place the {wildflower.GetType().Name} where?");
 
             Console.Write ("> ");
@@ -30,13 +29,6 @@ namespace Trestlebridge.Actions {
             {
                 ChooseNaturalField.CollectInput(farm, wildflower);
             }
-
-            /*
-                Couldn't get this to work. Can you?
-                Stretch goal. Only if the app is fully functional.
-             */
-            // farm.PurchaseResource<IGrazing>(animal, choice);
-
         }
     }
 }
