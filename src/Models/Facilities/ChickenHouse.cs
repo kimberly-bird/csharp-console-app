@@ -18,6 +18,7 @@ namespace Trestlebridge.Models.Facilities {
             }
         }
 
+        // counts the # of chickens in chicken house
         public int GetTotalInField() {
             return _chickens.Count;
         }

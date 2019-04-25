@@ -21,8 +21,21 @@ namespace Trestlebridge.Models.Facilities {
             }
         }
 
+        // get total # flowers in field (method not in use)
         public int GetTotalInField() {
             return _flowers.Count;
+        }
+
+        // get total number of flowers in field
+        public int GetSunflowersCount ()
+        {
+            return _flowers.Where(f => f.GetType().Name == "Sunflower").Count();
+        }
+
+        // get total number of sesames in field
+        public int GetSesamesCount ()
+        {
+            return _flowers.Where(f => f.GetType().Name == "Sesame").Count();
         }
 
         public bool AddResource (ISeedProducing flower)
@@ -46,16 +59,6 @@ namespace Trestlebridge.Models.Facilities {
             if (_flowers.Count + flowers.Count <= _capacity) {
                 _flowers.AddRange(flowers);
             }
-        }
-
-        public int GetSunflowersCount ()
-        {
-            return _flowers.Where(f => f.GetType().Name == "Sunflower").Count();
-        }
-
-        public int GetSesamesCount ()
-        {
-            return _flowers.Where(f => f.GetType().Name == "Sesame").Count();
         }
 
         public override string ToString()

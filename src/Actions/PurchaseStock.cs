@@ -6,6 +6,9 @@ using Trestlebridge.Models.Facilities;
 
 namespace Trestlebridge.Actions {
     public class PurchaseStock {
+        /*
+        class to prompt user to select which animal they would like to purchase 
+        */
         public static void CollectInput (Farm farm) {
             Console.WriteLine ("1. Chicken");
             Console.WriteLine ("2. Cow");
@@ -21,6 +24,7 @@ namespace Trestlebridge.Actions {
             Console.Write ("> ");
             string choice = Console.ReadLine ();
 
+            // based off of selection, appropriate animal will be created
             switch (Int32.Parse(choice))
             {
                 case 1:
