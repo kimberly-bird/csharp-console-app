@@ -11,12 +11,11 @@ namespace Trestlebridge.Actions {
 
             for (int i = 0; i < farm.PlowedFields.Count; i++)
             {
-                Console.WriteLine ($"{i + 1}. Plowed Field contains ({farm.PlowedFields[i].GetTotalInField()} flowers)");
+                Console.WriteLine ($"{i + 1}. Plowed Field ({farm.PlowedFields[i].GetSunflowersCount()} sunflower, {farm.PlowedFields[i].GetSesamesCount()} sesame)");
             }
 
             Console.WriteLine ();
 
-            // How can I output the type of flower chosen here?
             Console.WriteLine ($"Place the {flower} where?");
 
             Console.Write ("> ");

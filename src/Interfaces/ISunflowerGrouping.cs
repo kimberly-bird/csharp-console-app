@@ -4,8 +4,10 @@ namespace Trestlebridge.Models.Animals
     {
         int GetTotalInField ();
 
-        int GetSunflowersCount ();
-
         int GetWildflowerCount ();
+
+        int GetSesamesCount ();
+
+        int GetSunflowersCount ();
     }
 }

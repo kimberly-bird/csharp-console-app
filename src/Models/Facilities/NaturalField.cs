@@ -73,5 +73,10 @@ namespace Trestlebridge.Models.Facilities {
         {
             return _flowers.Count;
         }
+
+        public int GetSesamesCount()
+        {
+            return 0;
+        }
     }
 }
