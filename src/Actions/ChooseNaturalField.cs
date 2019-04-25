@@ -14,7 +14,7 @@ namespace Trestlebridge.Actions {
 
             for (int i = 0; i < farm.NaturalFields.Count; i++)
             {
-                Console.WriteLine ($"{i + 1}. Natural Field ({farm.NaturalFields[i].GetSunflowersCount()} sunflowers, {farm.NaturalFields[i].GetWildflowerCount()} wildflowers)");
+                Console.WriteLine ($"{i + 1}. Natural Field ({farm.NaturalFields[i].GetSunflowersCount()} sunflower, {farm.NaturalFields[i].GetWildflowerCount()} wildflower)");
             }
 
             Console.WriteLine ();

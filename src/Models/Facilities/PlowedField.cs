@@ -48,6 +48,16 @@ namespace Trestlebridge.Models.Facilities {
             }
         }
 
+        public int GetSunflowersCount ()
+        {
+            return _flowers.Where(f => f.GetType().Name == "Sunflower").Count();
+        }
+
+        public int GetSesamesCount ()
+        {
+            return _flowers.Where(f => f.GetType().Name == "Sesame").Count();
+        }
+
         public override string ToString()
         {
             StringBuilder output = new StringBuilder();
@@ -64,14 +74,9 @@ namespace Trestlebridge.Models.Facilities {
             throw new NotImplementedException();
         }
 
-        public int GetSunflowersCount()
-        {
-            return _flowers.Where(f => f.GetType().Name == "Sunflower").Count();
-        }
-
         public int GetWildflowerCount()
         {
-            return _flowers.Where(f => f.GetType().Name == "Wildflower").Count();
+            return 0;
         }
     }
 }

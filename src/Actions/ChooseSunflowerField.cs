@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Trestlebridge.Interfaces;
 using Trestlebridge.Models;
 using Trestlebridge.Models.Animals;
@@ -29,7 +30,25 @@ namespace Trestlebridge.Actions {
             foreach (var item in fieldDict)
             {
                 // display available fields and # flowers in each field to user
-                Console.WriteLine($"{item.Key}. {item.Value.GetType().Name} ({item.Value.GetSunflowersCount()} sunflowers, {item.Value.GetWildflowerCount()} wildflowers)");
+                // TODO: How to conditionally show wildflower OR sesame, based on natural vs plowed field?
+                StringBuilder output = new StringBuilder();
+
+                var flowerType = item.Value.GetType().Name;
+
+                output.Append($"{item.Key}. {flowerType} ({item.Value.GetSunflowersCount()} sunflower, ");
+
+                if (flowerType == "NaturalField")
+                {
+                    output.Append($"{item.Value.GetWildflowerCount()} wildflower)");
+                } 
+
+                if (flowerType == "PlowedField")
+                {
+                    output.Append($"{item.Value.GetSesamesCount()} sesame)");
+                }
+
+                Console.WriteLine($"{output}");
+
             }
 
             Console.WriteLine ();
