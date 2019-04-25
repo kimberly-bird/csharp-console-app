@@ -5,6 +5,9 @@ using Trestlebridge.Models.Facilities;
 
 namespace Trestlebridge.Actions {
     public class CreateFacility {
+        /*
+        Class to prompt user to select which facility they would like to create 
+        */
         public static void CollectInput (Farm farm) {
             Console.WriteLine ("1. Grazing field");
             Console.WriteLine ("2. Plowed field");
@@ -18,6 +21,7 @@ namespace Trestlebridge.Actions {
             Console.Write ("> ");
             string input = Console.ReadLine ();
 
+            // based off what user selects, appropriate facility is created
             switch (Int32.Parse(input))
             {
                 case 1:

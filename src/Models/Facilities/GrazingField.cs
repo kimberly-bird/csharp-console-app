@@ -19,16 +19,19 @@ namespace Trestlebridge.Models.Facilities {
             }
         }
 
+        // counts total number of animals in field (method not in use)
         public int GetTotalInField() {
             return _animals.Count;
         }
 
+        // groups animals based off of animal type and then prints out the animal name and the number of animals of that type
         public void GroupAnimalTotals()
         {
             var groupedAnimals = _animals.GroupBy(a => a.Type);
 
             foreach (var item in groupedAnimals)
             {
+                // example output: Cow (3)
                 Console.WriteLine($"{item.Key} ({item.Count()})");
             }
         }

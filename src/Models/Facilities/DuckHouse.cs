@@ -18,6 +18,7 @@ namespace Trestlebridge.Models.Facilities {
             }
         }
 
+        // counts number of ducks in duck house
         public int GetTotalInField() {
             return _ducks.Count;
         }

@@ -7,6 +7,9 @@ using Trestlebridge.Models.Plants;
 
 namespace Trestlebridge.Actions {
     public class PurchaseSeeds {
+        /*
+        class to prompt user to select which type of flower seeds to purchase 
+        */
         public static void CollectInput (Farm farm) {
             Console.WriteLine ("1. Sesame");
             Console.WriteLine ("2. Sunflower");
@@ -18,6 +21,7 @@ namespace Trestlebridge.Actions {
             Console.Write ("> ");
             string choice = Console.ReadLine ();
 
+            // based off of select, correct flower seed is created
             switch (Int32.Parse(choice))
             {
                 case 1:

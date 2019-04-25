@@ -21,15 +21,18 @@ namespace Trestlebridge.Models.Facilities {
             }
         }
 
+        // get total # flowers in field (method not in use)
         public int GetTotalInField() {
             return _flowers.Count;
         }
 
+        // count the number of sunflowers in field
         public int GetSunflowersCount ()
         {
             return _flowers.Where(f => f.GetType().Name == "Sunflower").Count();
         }
 
+        // count the number of wildflowers in field
         public int GetWildflowerCount ()
         {
             return _flowers.Where(f => f.GetType().Name == "Wildflower").Count();
